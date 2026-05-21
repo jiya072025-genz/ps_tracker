@@ -78,3 +78,45 @@ void addExpense(Expense& expenses) {
     cin.ignore();
     cout << "  Expense added successfully!\n";
 }
+void viewExpenses(const Expense& expenses) {
+
+    if (expenses.count == 0) {
+        cout << "\nNo Expenses Found!\n";
+        return;
+    }
+
+    cout << "\n========== ALL EXPENSES ==========\n";
+
+    for (int i = 0; i < expenses.count; i++) {
+
+        cout << "\nExpense #" << i + 1 << endl;
+        cout << "Date       : " << expenses.date[i] << endl;
+        cout << "Category   : " << expenses.category[i] << endl;
+        cout << "Description: " << expenses.description[i] << endl;
+        cout << "Amount     : Rs. " << expenses.amount[i] << endl;
+    }
+}
+void viewByCategory(const Expense& expenses) {
+    if (expenses.count == 0) {
+        cout << "\nNo Expenses Available!\n";
+        return;
+    }
+    string searchCategory;
+    cout << "\nEnter Category to Search: ";
+    getline(cin, searchCategory);
+    bool found = false;
+    cout << "\n===== CATEGORY RESULTS =====\n";
+    for (int i = 0; i < expenses.count; i++) {
+        if (expenses.category[i] == searchCategory) {
+            found = true;
+            cout << "\nExpense #" << i + 1 << endl;
+            cout << "Date       : " << expenses.date[i] << endl;
+            cout << "Description: " << expenses.description[i] << endl;
+            cout << "Amount     : Rs. " << expenses.amount[i] << endl;
+        }
+    }
+    if (!found) {
+        cout << "\nNo Expense Found in this Category!\n";
+    }
+}
+
