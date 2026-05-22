@@ -115,8 +115,42 @@ void viewByCategory(const Expense& expenses) {
             cout << "Amount     : Rs. " << expenses.amount[i] << endl;
         }
     }
+
     if (!found) {
         cout << "\nNo Expense Found in this Category!\n";
     }
 }
+double getTotalSpending(const Expense& expenses) {
 
+    double total = 0;
+
+    for (int i = 0; i < expenses.count; i++) {
+        total += expenses.amount[i];
+    }
+
+    return total;
+void deleteExpense(Expense& expenses) {
+
+    if (expenses.count == 0) {
+        cout << "\nNo Expenses to Delete!\n";
+        return;
+    }
+    viewExpenses(expenses);
+    int del;
+    cout << "\nEnter Expense Number to Delete: ";
+    cin >> del;
+    cin.ignore();
+
+    if (del < 1 || del > expenses.count) {
+        cout << "\nInvalid Expense Number!\n";
+        return;
+    }
+    del--;
+    for (int i = del; i < expenses.count - 1; i++) {
+        expenses.date[i] = expenses.date[i + 1];
+        expenses.category[i] = expenses.category[i + 1];
+        expenses.description[i] = expenses.description[i + 1];
+        expenses.amount[i] = expenses.amount[i + 1];
+    }
+    expenses.count--;out << "\nExpense Deleted Successfully!\n";
+}
