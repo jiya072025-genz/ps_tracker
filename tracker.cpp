@@ -154,3 +154,25 @@ void deleteExpense(Expense& expenses) {
     }
     expenses.count--;out << "\nExpense Deleted Successfully!\n";
 }
+void saveToFile(const Expense& expenses, string filename) {
+
+    ofstream file(filename);
+
+    if (!file) {
+        cout << "\nError Opening File!\n";
+        return;
+    }
+
+    file << expenses.count << endl;
+
+    for (int i = 0; i < expenses.count; i++) {
+
+        file << expenses.date[i] << endl;
+        file << expenses.category[i] << endl;
+        file << expenses.description[i] << endl;
+        file << expenses.amount[i] << endl;
+    }
+
+    file.close();
+}
+
